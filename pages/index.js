@@ -1,5 +1,6 @@
 import appConfigColors from  '../config.json'
 import {Box, Button, Text, TextField, Image} from '@skynexui/components'
+
 function GlobalStyle(){
     return (
          /*global CSS*/
@@ -52,17 +53,16 @@ function Title(props) {
 
 
 export default function PaginaInicial() {
-    // const username = 'omariosouto';
-    const [username, setUsername] = React.useState('vandroy77');
-    const roteamento = useRouter();
-  //https://wallpapercave.com/wp/wp3011277.jpg
+    const username = 'vandroy77';
+   // const [username, setUsername] = React.useState('vandroy77');
+   // const roteamento = useRouter();
     return (
       <>
-      
+        <GlobalStyle/>
         <Box
           styleSheet={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            backgroundColor: appConfig.theme.colors.primary[500],
+            backgroundColor: appConfigColors.theme.colors.primary[500],
             backgroundImage: 'url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)',
             backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
           }}
@@ -79,7 +79,7 @@ export default function PaginaInicial() {
               width: '100%', maxWidth: '700px',
               borderRadius: '5px', padding: '32px', margin: '16px',
               boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-              backgroundColor: appConfig.theme.colors.neutrals[700],
+              backgroundColor: appConfigColors.theme.colors.neutrals[700],
             }}
           >
             {/* Formulário */}
@@ -88,7 +88,7 @@ export default function PaginaInicial() {
               onSubmit={function (infosDoEvento) {
                 infosDoEvento.preventDefault();
                 console.log('Alguém submeteu o form');
-                roteamento.push('/chat');
+               // roteamento.push('/chat');
                 // window.location.href = '/chat';
               }}
               styleSheet={{
@@ -97,8 +97,8 @@ export default function PaginaInicial() {
               }}
             >
               <Title tag="h2">Boas vindas de volta!</Title>
-              <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
-                {appConfig.name}
+              <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfigColors.theme.colors.neutrals[300] }}>
+                {appConfigColors.name}
               </Text>
   
               {/* <input
@@ -126,10 +126,10 @@ export default function PaginaInicial() {
                 fullWidth
                 textFieldColors={{
                   neutral: {
-                    textColor: appConfig.theme.colors.neutrals[200],
-                    mainColor: appConfig.theme.colors.neutrals[900],
-                    mainColorHighlight: appConfig.theme.colors.primary[500],
-                    backgroundColor: appConfig.theme.colors.neutrals[800],
+                    textColor: appConfigColors.theme.colors.neutrals[200],
+                    mainColor: appConfigColors.theme.colors.neutrals[900],
+                    mainColorHighlight: appConfigColors.theme.colors.primary[500],
+                    backgroundColor: appConfigColors.theme.colors.neutrals[800],
                   },
                 }}
               />
@@ -138,10 +138,10 @@ export default function PaginaInicial() {
                 label='Entrar'
                 fullWidth
                 buttonColors={{
-                  contrastColor: appConfig.theme.colors.neutrals["000"],
-                  mainColor: appConfig.theme.colors.primary[500],
-                  mainColorLight: appConfig.theme.colors.primary[400],
-                  mainColorStrong: appConfig.theme.colors.primary[600],
+                  contrastColor: appConfigColors.theme.colors.neutrals["000"],
+                  mainColor: appConfigColors.theme.colors.primary[500],
+                  mainColorLight: appConfigColors.theme.colors.primary[400],
+                  mainColorStrong: appConfigColors.theme.colors.primary[600],
                 }}
               />
             </Box>
@@ -156,9 +156,9 @@ export default function PaginaInicial() {
                 alignItems: 'center',
                 maxWidth: '200px',
                 padding: '16px',
-                backgroundColor: appConfig.theme.colors.neutrals[800],
+                backgroundColor: appConfigColors.theme.colors.neutrals[800],
                 border: '1px solid',
-                borderColor: appConfig.theme.colors.neutrals[999],
+                borderColor: appConfigColors.theme.colors.neutrals[999],
                 borderRadius: '10px',
                 flex: 1,
                 minHeight: '240px',
@@ -174,8 +174,8 @@ export default function PaginaInicial() {
               <Text
                 variant="body4"
                 styleSheet={{
-                  color: appConfig.theme.colors.neutrals[200],
-                  backgroundColor: appConfig.theme.colors.neutrals[900],
+                  color: appConfigColors.theme.colors.neutrals[200],
+                  backgroundColor: appConfigColors.theme.colors.neutrals[900],
                   padding: '3px 10px',
                   borderRadius: '1000px'
                 }}
