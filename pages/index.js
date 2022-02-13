@@ -1,34 +1,16 @@
 import appConfigColors from '../config.json'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 
 
-function Title(props) {
-  // console.log(props)
-  const Tag = props.tag || "h1";
-  return (
-    <>
-      {/*colocar em chaves, consigo receber as informações no tag title caso contrário vai ser apenas um texto*/}
-      <Tag>{props.children}</Tag>
-
-      <style jsx>{`
-            ${Tag} {
-                color: ${appConfigColors.theme.colors.neutrals['999']};
-                font-size: 24px;
-                font-weight: 600;
-            }
-            `}</style>
-    </>
-  );
-}
-
 //api.github.com/users/vandroy77
 export default function PaginaInicial() {
-  //const username = 'vandroy77';
+  //const usernamea= 'vandroy77';
 
   const [username, setUsername] = React.useState('vandroy77');
   const roteamento = useRouter();
+
   return (
     <>
       <Box
@@ -50,20 +32,21 @@ export default function PaginaInicial() {
             },
             width: '100%', maxWidth: '700px',
             borderRadius: '5px', padding: '32px', margin: '16px',
-            //border: 'px solid rgb(0 0 0 / 5%)',
-            // borderColor: appConfigColors.theme.colors.neutrals["999"],
-            boxShadow: '5px 10px 10px 0 rgb(0 0 0 / 40%)',
-
+            boxShadow: '5px 10px 10px 10px rgb(0 0 0 / 40%)',
             // backgroundColor: appConfigColors.theme.colors.neutrals["000"],
+            backgroundColor:' rgb(0 0 0 / 5%)'
+            
           }}
         >
+
           {/* Formulário */}
           <Box
             as="form"
             onSubmit={function (infosDoEvento) {
               infosDoEvento.preventDefault();
-              console.log('Alguém submeteu o form');
-              roteamento.push('/chat');
+              // salvar o nome do usuario na url 
+              //`` < template string
+              roteamento.push(`/chat?username=${username}`);
               // window.location.href = '/chat';
             }}
             styleSheet={{
@@ -71,10 +54,27 @@ export default function PaginaInicial() {
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
             }}
           >
-            <Title tag="h2">Boas vindas de volta!</Title>
-            <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfigColors.theme.colors.neutrals["999"] }}>
-              {appConfigColors.name}
-            </Text>
+
+            <Text tag="h2" style={{ fontSize: '24px' }} >
+              Boas vindas de volta!</Text>
+
+            <Button label='Acesse meu Github - vandroy77' style={{
+              width: 250,
+              backgroundColor: 'White',
+              color: 'black',
+              alignSelf: 'Center',
+              borderRadius: 20,
+              borderWidth: 5,
+              marginBottom: 15,
+              marginTop: 15,
+              padding: 5,
+              borderColor: '#fff'
+
+            }}
+              onClick={() => { return window.open("http://www.github.com/vandroy77", "_blank") }}>
+
+            </Button>
+
             {/*
               <input type= "text"
               value = {username} 
@@ -85,7 +85,6 @@ export default function PaginaInicial() {
               }}
               />
               */}
-
 
             <TextField
               placeholder='Insira seu Usuário'
@@ -129,55 +128,57 @@ export default function PaginaInicial() {
               user
             </Text>
             */}
-            
+
           </Box>
           {/* Formulário */}
 
 
           {/* Photo Area */}
-          <Box
-            styleSheet={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: '200px',
-              padding: '16px',
-              //backgroundColor: appConfigColors.theme.colors.neutrals[200],
-              // border: '5px solid',
-              borderColor: appConfigColors.theme.colors.neutrals[999],
-              borderRadius: '10px',
-              flex: 1,
-              minHeight: '240px',
-            }}
-          >
-            <Image
+            <Box
               styleSheet={{
-                borderRadius: '50%',
-                marginBottom: '16px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                maxWidth: '200px',
+                padding: '16px',
+                backgroundColor: appConfigColors.theme.colors.neutrals[200],
+                // border: '5px solid',
+                borderColor: appConfigColors.theme.colors.neutrals[999],
+                borderRadius: '10px',
+                flex: 1,
+                minHeight: '240px',
               }}
-              src={`https://github.com/${username}.png`}
-              onError={({ currentTarget }) => {
-                currentTarget.src = "https://previews.123rf.com/images/lovedoves/lovedoves1608/lovedoves160800144/60932368-isometric-illustration-pixel-art-8-bit-for-website-page-not-found-404-error-and-colorful-dinosaur-is.jpg?fj=1";
 
-
-              }}
-
-            />
-            <Text
-              variant="body4"
-              styleSheet={{
-                color: appConfigColors.theme.colors.neutrals[200],
-                backgroundColor: appConfigColors.theme.colors.neutrals[900],
-                padding: '3px 10px',
-                borderRadius: '1000px'
-              }}
             >
-              {username}
-            </Text>
-          </Box>
+
+              <Image
+                styleSheet={{
+                  borderRadius: '50%',
+                  marginBottom: '16px',
+                }}
+                src={`https://github.com/${username}.png`}
+                onError={({ currentTarget }) => {
+                  currentTarget.src = "https://previews.123rf.com/images/lovedoves/lovedoves1608/lovedoves160800144/60932368-isometric-illustration-pixel-art-8-bit-for-website-page-not-found-404-error-and-colorful-dinosaur-is.jpg?fj=1";
+
+
+                }}
+
+              />
+              <Text
+                variant="body4"
+                styleSheet={{
+                  color: appConfigColors.theme.colors.neutrals[200],
+                  backgroundColor: appConfigColors.theme.colors.neutrals[900],
+                  padding: '3px 10px',
+                  borderRadius: '1000px'
+                }}
+              >
+                {username}
+              </Text>
+            </Box>
           {/* Photo Area */}
         </Box>
-      </Box>
+      </Box >
     </>
   );
 }
